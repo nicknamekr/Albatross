@@ -14,15 +14,44 @@ def search():
     model="gpt-3.5-turbo", 
     messages=[{"role": "user", "content": request.args.get('q')}]
   )
-  # response = openai.Completion.create(
-  #   model="text-davinci-003",
-  #   prompt= request.args.get('q'),
-  #   temperature=0.65,
-  #   max_tokens=500,
-  #   stop=[" Human:", " AI:"]
-  # )
   print(response)
   return render_template('search.html', genie_ai_body = response.choices[0].message.content)
+
+@app.route('/index.li')
+def index_lite():
+  return render_template('lite-idx.html')
+
+@app.route('/geniepaint')
+def geniepaint():
+  return render_template('geniepaint.html')
+
+@app.route('/geniepaint.dl')
+def geniepaint_dl():
+  response = openai.Image.create(
+    prompt=request.args.get('q'),
+    n=1,
+    size="512x512"
+  )
+  image_url = response['data'][0]['url']
+  return '''
+  <head>
+   <title>downloader</title>
+  </head>
+  <body>
+   <div style="display: none;"><span>AI PAINTER</span></div>
+    <script>
+      function downloadURI(uri, name){
+          var link = document.createElement("a");
+          link.setAttribute("download", name);
+          link.href = uri;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+      }
+      downloadURI("image_url", "geniepainter-ai-result.png"); 
+    </script>
+  </body>
+  '''.replace('image_url', image_url)
 
 @app.route('/chat.shorten')
 def chat_linking():
