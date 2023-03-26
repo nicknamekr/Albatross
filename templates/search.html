@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta name='viewport' content='width=device-width' />  
+    <title>Albatrus.Search</title>
+  </head>
+  <body style='margin-left: 100px;'>
+    <div style='margin-top: 3vh;'>
+      <form name = "search" method = "get" action='/search.w'>
+       <div>
+        <a href='/'><img src="logo.svg" width='2%' border="0"></a>
+        <input class="form-control" name='q' style='width: 50%; display: inline;' type="text" placeholder="What do you like to search?" autocomplete=off>
+        <button type="submit" onclick='loading_search()' class="btn btn-primary material-icons" style='display: inline; background-color: black; border: 0;' value='' aria-autocomplete=false>search</button>
+       </div>
+      </form>
+    </div>
+    <div class="card my-md-3 shadow-sm" id='genieai'>
+          <div class="card-body">
+              <h4 class="heading">✨ Genie AI Search</h4>
+                        <p>{{genie_ai_body}}</p>
+                        <ul class="list-unstyled infobox m-0" id="infobox-list">
+                         <li class="text-truncate py-1">
+                           <span class="text-dark font-weight-bold">Data source:</span>&nbsp;
+                           <span class="text-muted">
+                           <a href="https://openai.com" rel="nofollow" target="_blank">OpenAI</a></span>
+                           <span class="text-dark font-weight-bold">&nbsp;|&nbsp;Max Character : 500 | <a href='/chat.shorten' style='color: black;'>Want to see more? 👀</a></span>
+                         </li>
+                        </ul>                                         
+          </div>
+    </div>
+    <script async src="https://cse.google.com/cse.js?cx=940384759f267476b">
+    </script>
+    <div class="gcse-searchresults-only"></div>
+  </body>
+  <style>
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'arial';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Arial';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+body {
+  font-family: 'Pretendard-Regular';
+}
+b span div{
+  font-family: 'Pretendard-Regular' !important;
+}
+.gsc-control-cse {
+  width: 55%;
+}
+.gcsc-find-more-on-google-branding {
+  display: none!important;
+}
+.gsc-adBlock {
+  display: none!important;
+}
+.gcsc-more-maybe-branding-root {
+  display: none!important;
+}
+.gsc-adBlockVertical, .gsc-adBlock { /* this hides both the top and right ad blocks*/
+    display:none;
+}
+.gsc-thinWrapper { /* this gives you use of the whole block, as opposed to 69% google gives*/
+    width: 100%;
+}
+.gsc-selected-option-container {
+  background-color: white !important;
+  color: #454545 !important;
+  border: 1px solid darkgray !important;
+  border-radius: 7.5px !important;
+  border-color: #a9a9a9 !important;
+  box-shadow: unset;
+}
+#genieai {
+  width: 55%;
+}
+.gsc-cursor-page {
+  font-size: 1.3em !important;
+  margin-right: 12.5px !important;
+}
+.gs-bidi-start-align gs-visibleUrl gs-visibleUrl-breadcrumb < a {
+  font-size: 1.25em !important;
+}
+.gs-bidi-start-align gs-snippet {
+  font-size: 1.25em !important;
+}
+  </style>
+<script>
+  urlSearch = new URLSearchParams(location.search);
+  query = urlSearch.get('q')
+
+  $('input[name=q]').attr('value',query);
+</script>
+<script>
+  function loading_search(){
+    Swal.fire({
+      title: 'Auto Searching ✈️',
+      html: 'Searching... Please wait kindly :)',
+      timer: 99999999999999999,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft()
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
+  }
+</script>
+</html>
