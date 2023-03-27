@@ -13,7 +13,7 @@
   </head>
   <body style='margin-left: 100px;'>
     <div style='margin-top: 3vh; width: 55%;'>
-      <form name = "search" method = "get" action='/search.w'>
+      <form name = "search" method = "get" action=''>
        <div>
         <a href='/'><img src="logo.svg" width='5%' border="0"></a>
         <input class="form-control" name='q' style='width: 87.5%; display: inline;' type="text" placeholder="What do you like to search?" autocomplete=off>
@@ -197,6 +197,22 @@ b span div{
   border: 1px solid #dddddd;
 }
   </style>
+<script>
+  const str = window.location.pathname;
+  if (str.indexOf('search.li') != -1) {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Lightning Mode! No ai search, faster speed.',
+      showConfirmButton: false,
+      timer: 1750
+    })
+    console.log("[yes] lightning mode");
+  } else {
+    console.log("[no] lightning mode")
+  }
+  
+</script>
 <script>
   urlSearch = new URLSearchParams(location.search);
   query = urlSearch.get('q')

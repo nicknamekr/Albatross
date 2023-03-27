@@ -11,25 +11,38 @@
     <title>Albatrus.beta</title>
   </head>
   <body style='width: 100vw; height: 100%;'>
+ <div class="hamburger-menu">
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+
+    <ul class="menu__box">
+      <li><a class="menu__item" href="/">Main Page | 메인 페이지</a></li>
+			<li><a class="menu__item" href="/chat.shorten">Genie AI | 지니 AI</a></li>
+			<li><a class="menu__item" href="/geniepaint">GeniePaint | 지니페인트</a></li>
+			<li><a class="menu__item" href="/pagos.idx">Pagos Wiki | Pagos 위키</a></li>
+			<li><a class="menu__item" href="mailto:v@safeds.tk">Contact | 문의지원</a></li>
+    </ul>
+  </div>
     <div style='margin-top: 25vh; text-align: center;'>
       <img src="logo.svg" width='6.5%' border="0">
     </div>
     <div style='margin-top: 3vh; text-align: center;'>
-      <form  accept-charset="utf-8" name = "search" method = "get" action='/search.w'>
+      <form  accept-charset="utf-8" id='abtsc' name = "search" method = "get" action='/search.w'>
        <div>
-        <input class="form-control" name='q' style='width: 45%; display: inline;' type="text" placeholder="What do you like to search?" autocomplete=off>
+        <input class="form-control" name='q' style='width: 37.5%; display: inline;' type="text" placeholder="What do you like to search?" autocomplete=off>
         <button type="submit" onclick='loading_search()' class="btn btn-primary material-icons" style='display: inline; background-color: black; border: 0;'>search</button>
+        <button type="submit" onclick='lightning_mode()' class="btn btn-primary material-icons" style='display: inline; background-color: black; border: 0;'>electric_bolt</button>
        </div>
       </form>
     </div>
     <div style='margin-top: 3vh; text-align: center;'>
-      <span style='font-size: 1.05em;'>Version 0.4 Albatross-Drawer @ Genie AI Search # Google CSE</span>
+      <span style='font-size: 1.05em;'>Version 0.5 Albatross-Speedy @ Genie AI Search # Google CSE</span>
       <br>
       <span style='font-size: 1.05em;'>Do you want to get longer message from Genie AI? <a href='/chat.shorten' style='color: black;'>Go to Chat!</a></span>
       <br>
       <span style='font-size: 1.05em;'>Try best-quality AI painting! <a href='/geniepaint' style='color: black;'>Try GeniePaint Now</a></span>
-      <br>
-      <span style='font-size: 1.05em;'>Faster Speed, Lighter WebPage. Albatross Lite. <a href='/index.li' style='color: black;'>Try Now!</a></span>
     </div>
   </body>
   <style>
@@ -49,7 +62,80 @@ body {
   padding-top: 1em;
   padding-bottom: 1em;
 }
+
+#menu__toggle {
+  opacity: 0;
+}
+#menu__toggle:checked + .menu__btn > span {
+  transform: rotate(45deg);
+}
+#menu__toggle:checked + .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0deg);
+}
+#menu__toggle:checked + .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+  left: 0 !important;
+}
+.menu__btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1;
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #616161;
+  transition-duration: .25s;
+}
+.menu__btn > span::before {
+  content: '';
+  top: -8px;
+}
+.menu__btn > span::after {
+  content: '';
+  top: 8px;
+}
+.menu__box {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: #ECEFF1;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+  transition-duration: .25s;
+}
+.menu__item {
+  display: block;
+  padding: 12px 24px;
+  color: #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: .25s;
+}
+.menu__item:hover {
+  background-color: #CFD8DC;
+}
   </style>
+
 <script>
   function loading_search(){
     Swal.fire({
@@ -73,6 +159,12 @@ body {
         console.log('I was closed by the timer')
       }
     })
+  }
+</script>
+<script>
+  
+  function lightning_mode(){
+    $('#abtsc').attr('action', '/search.li');
   }
 </script>
 </html>

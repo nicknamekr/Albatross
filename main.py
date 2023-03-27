@@ -1,5 +1,6 @@
 from flask import Flask, render_template, send_from_directory, request, redirect
 import openai, os
+import wikipedia
 
 app = Flask('app')
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -17,9 +18,9 @@ def search():
   print(response)
   return render_template('search.html', genie_ai_body = response.choices[0].message.content)
 
-@app.route('/index.li')
-def index_lite():
-  return render_template('lite-idx.html')
+@app.route('/search.li')
+def search_li():
+  return render_template('search.html', genie_ai_body = "For now, lightning search doesn't support Genie AI Search.")
 
 @app.route('/geniepaint')
 def geniepaint():
@@ -52,6 +53,13 @@ def geniepaint_dl():
     </script>
   </body>
   '''.replace('image_url', image_url)
+
+@app.route('/pagos.idx')
+def pagos_idx():
+  wikipedia.set_lang("ko")
+  x = wikipedia.summary(request.args.get('q', '위키백과:대문'))
+  print(x)
+  return render_template('pagos.html', pgv = x)
 
 @app.route('/chat.shorten')
 def chat_linking():
