@@ -8,6 +8,7 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <meta name='viewport' content='width=device-width' />  
+    <script src="https://cdn.jsdelivr.net/npm/party-js@latest/bundle/party.min.js"></script>
     <title>Albatrus.beta</title>
   </head>
   <body style='width: 100vw; height: 100%;'>
@@ -22,11 +23,12 @@
 			<li><a class="menu__item" href="/chat.shorten">Genie AI | 지니 AI</a></li>
 			<li><a class="menu__item" href="/geniepaint">GeniePaint | 지니페인트</a></li>
 			<li><a class="menu__item" href="/pagos.idx">Pagos Wiki | Pagos 위키</a></li>
+      <li><a class="menu__item" href="/map.idx">Travolous | 지도</a></li>
 			<li><a class="menu__item" href="mailto:v@safeds.tk">Contact | 문의지원</a></li>
     </ul>
   </div>
     <div style='margin-top: 25vh; text-align: center;'>
-      <img src="logo.svg" width='6.5%' border="0">
+      <img src="logo.svg" class="bounce" id='tongtong' onclick='party.confetti(this)' width='6.5%' border="0">
     </div>
     <div style='margin-top: 3vh; text-align: center;'>
       <form  accept-charset="utf-8" id='abtsc' name = "search" method = "get" action='/search.w'>
@@ -38,12 +40,18 @@
       </form>
     </div>
     <div style='margin-top: 3vh; text-align: center;'>
-      <span style='font-size: 1.05em;'>Version 0.5 Albatross-Speedy @ Genie AI Search # Google CSE</span>
+      <span style='font-size: 1.05em;'>Version 0.6 Albatross-Universe @ Genie AI Search # Google CSE</span>
       <br>
       <span style='font-size: 1.05em;'>Do you want to get longer message from Genie AI? <a href='/chat.shorten' style='color: black;'>Go to Chat!</a></span>
       <br>
       <span style='font-size: 1.05em;'>Try best-quality AI painting! <a href='/geniepaint' style='color: black;'>Try GeniePaint Now</a></span>
     </div>
+    <script>
+	let v = document.getElementById("tongtong");
+  setTimeout(function() {
+	 v.classList.remove('bounce');
+  }, 1500);
+    </script>
   </body>
   <style>
 @font-face {
@@ -134,6 +142,113 @@ body {
 .menu__item:hover {
   background-color: #CFD8DC;
 }
+   
+.bounce { 
+      position: relative;
+      /* 파폭 */
+      -moz-animation: bounce 0.5s infinite linear;
+      /* 크롬 */
+      -webkit-animation: bounce 0.5s infinite linear;
+      -o-animation: bounce 0.5s infinite linear;
+      animation: bounce 0.5s infinite linear;
+    }
+
+    /* 
+      바운스의 높이 
+      0% 일 때, 0px 
+      50%일 때, -5px 
+      70%일 때, -50px
+      100%일 때, 0px 
+      */
+    @-webkit-keyframes bounce {
+      0% {
+        top: 0;
+      }
+
+      50% {
+        top: -5px;
+      }
+
+      70% {
+        top: -50px;
+      }
+
+      100% {
+        top: 0;
+      }
+    }
+
+    @-moz-keyframes bounce {
+      0% {
+        top: 0;
+      }
+
+      50% {
+        top: -5px;
+      }
+
+      70% {
+        top: -50px;
+      }
+
+      100% {
+        top: 0;
+      }
+    }
+
+    @-o-keyframes bounce {
+      0% {
+        top: 0;
+      }
+
+      50% {
+        top: -5px;
+      }
+
+      70% {
+        top: -50px;
+      }
+
+      100% {
+        top: 0;
+      }
+    }
+
+    @-ms-keyframes bounce {
+      0% {
+        top: 0;
+      }
+
+      50% {
+        top: -5px;
+      }
+
+      70% {
+        top: -50px;
+      }
+
+      100% {
+        top: 0;
+      }
+    }
+
+    @keyframes bounce {
+      0% {
+        top: 0;
+      }
+
+      50% {
+        top: -5px;
+      }
+
+      70% {
+        top: -50px;
+      }
+
+      100% {
+        top: 0;
+      }
+    }
   </style>
 
 <script>

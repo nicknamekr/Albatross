@@ -57,9 +57,13 @@ def geniepaint_dl():
 @app.route('/pagos.idx')
 def pagos_idx():
   wikipedia.set_lang("ko")
-  x = wikipedia.summary(request.args.get('q', '위키백과:대문'))
+  x = wikipedia.summary(request.args.get('q', 'Main_Page'))
   print(x)
   return render_template('pagos.html', pgv = x)
+
+@app.route('/map.idx')
+def map_idx():
+  return render_template('map.html')
 
 @app.route('/chat.shorten')
 def chat_linking():
@@ -69,8 +73,8 @@ def chat_linking():
 def ping_for_uptimerobot():
   return '.'
 
-@app.route('/logo.svg')
-def logo():
+@app.errorhandler(404)
+def logo(e):
     return send_from_directory(app.static_folder, request.path[1:])
 
 app.run(host='0.0.0.0', port=5523, debug=True)
