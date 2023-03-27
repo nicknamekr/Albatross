@@ -17,13 +17,16 @@
     <div style='margin-top: 3vh; text-align: center;'>
       <form  accept-charset="utf-8" name = "search" method = "get" action='/geniepaint.dl'>
        <div>
-        <input class="form-control" onchange='ai_generating()' name='q' style='width: 45%; display: inline;' type="text" placeholder="What do you like to draw?" autocomplete=off>
+        <input class="form-control" name='q' id='ipt' style='width: 40%; display: inline;' type="text" placeholder="What do you like to draw?" autocomplete=off>
         <button type="submit" onclick='ai_generating()' class="btn btn-primary material-icons" style='display: inline; background-color: black; border: 0;'>image</button>
+         <button type="submit" onclick='ai_generating_random()' class="btn btn-primary material-icons" style='display: inline; background-color: black; border: 0;'>casino</button>
        </div>
       </form>
     </div>
     <div style='margin-top: 3vh; text-align: center;'>
-      <span style='font-size: 1.05em;'>GeniePaint Gentile-Bellini @ AlbatrossUI</span>
+      <span style='font-size: 1.05em;'>GeniePaint v2 Yoo-Youngkuk @ AlbatrossUI</span>
+      <br>
+      <span style='font-size: 1.05em;'>Push dice button! That button will make random image. That's 5456 combinations!</span>
       <br>
       <span style='font-size: 1.05em;'>Try Genie Chat instead of GeniePaint! <a href='/chat.shorten' style='color: black;'>Go to Chat!</a></span>
       <br>
@@ -54,6 +57,24 @@ body {
         position: 'top-end',
         icon: 'success',
         title: 'Generated success! Please wait kindly...',
+        showConfirmButton: false,
+        timer: 99999999
+      })
+  }
+
+  function ai_generating_random(){
+      document.getElementById("ipt").value = "My value";
+      const strArray = ['Dog', 'Cat', 'Lion', 'Bear', 'Apple', 'Orange', 'Lemon', 'Lime', 'Melon', 'Grape', 'WaterMelon']
+      const strArray2 = ['chair', 'table', 'spoon', 'desk', 'computer', 'lamp', 'headphones', 'speakers', 'tissues', 'cup', 'plush'];
+      const strArray3 = ['space', 'room', 'toilet', 'kitchen', 'city', 'moon', 'street', 'school', 'restaurant', 'living room', 'car'];
+      const randomValue = strArray[Math.floor(Math.random() * strArray.length)];
+      const randomValue2 = strArray2[Math.floor(Math.random() * strArray2.length)];
+      const randomValue3 = strArray3[Math.floor(Math.random() * strArray3.length)];
+      document.getElementById("ipt").value = randomValue + ' ' +randomValue2 + ' at '  + randomValue3;
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Generated randomly! Please wait kindly...',
         showConfirmButton: false,
         timer: 99999999
       })
